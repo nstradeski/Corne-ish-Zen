@@ -1,60 +1,224 @@
+#include <dt-bindings/zmk/mouse.h>
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1500  // default: 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
+
+#include <dt-bindings/zmk/pointing.h>
 
 / {
-  chosen {
-    zmk,matrix_transform = &default_transform;
-    //zmk,matrix_transform = &five_column_transform;
-  };
+    chosen {
+        zmk,matrix_transform = &default_transform;
+
+        //zmk,matrix_transform = &five_column_transform;
+    };
 };
 
 / {
-        keymap {
-                compatible = "zmk,keymap";
+    combos {
+        compatible = "zmk,combos";
 
-                default_layer {
-                        label = "QWERTY";
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-                        bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
-                        >;
-                };
-                lower_layer {
-                        label = "NUMBER";
-// -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                          	        &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
-                        >;
-                };
-
-                raise_layer {
-                        label = "SYMBOL";
-// -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp STAR &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &kp PIPE &kp TILDE
-                    	     &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
-                        >;
-                };
+        sy_combo {
+            bindings = <&kp Y>;
+            key-positions = <39 22>;
+            layers = <0>;
         };
+
+        tp_combo {
+            bindings = <&kp P>;
+            key-positions = <39 21>;
+            layers = <0>;
+        };
+
+        hl_combo {
+            bindings = <&kp L>;
+            key-positions = <39 20>;
+            layers = <0>;
+        };
+
+        ed_combo {
+            bindings = <&kp DOT>;
+            key-positions = <39 19>;
+            layers = <0>;
+        };
+
+        oq_combo {
+            bindings = <&kp Q>;
+            key-positions = <39 18>;
+            layers = <0>;
+        };
+
+        fj_combo {
+            bindings = <&kp J>;
+            key-positions = <39 10>;
+            layers = <0>;
+        };
+
+        dk_combo {
+            bindings = <&kp K>;
+            key-positions = <39 9>;
+            layers = <0>;
+        };
+
+        nm_combo {
+            bindings = <&kp M>;
+            key-positions = <39 8>;
+            layers = <0>;
+        };
+
+        iq_combo {
+            bindings = <&kp SQT>;
+            key-positions = <39 7>;
+            layers = <0>;
+        };
+
+        gm_combo {
+            bindings = <&kp MINUS>;
+            key-positions = <39 6>;
+            layers = <0>;
+        };
+
+        cx_combo {
+            bindings = <&kp X>;
+            key-positions = <39 34>;
+            layers = <0>;
+        };
+
+        wb_combo {
+            bindings = <&kp B>;
+            key-positions = <39 33>;
+            layers = <0>;
+        };
+
+        rv_combo {
+            bindings = <&kp V>;
+            key-positions = <39 32>;
+            layers = <0>;
+        };
+
+        ac_combo {
+            bindings = <&kp COMMA>;
+            key-positions = <39 31>;
+            layers = <0>;
+        };
+
+        uz_combo {
+            bindings = <&kp Z>;
+            key-positions = <39 30>;
+            layers = <0>;
+        };
+
+        ten_combo {
+            bindings = <&kp RET>;
+            key-positions = <39 11>;
+            layers = <0>;
+        };
+
+        bluetooth {
+            bindings = <&sl 6>;
+            key-positions = <41 40>;
+            layers = <0>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        alpha {
+            label = "ALPHA";
+
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+
+            bindings = <
+&none  &none  &none  &none  &none  &none    &kp G      &kp I  &kp N  &kp D  &kp F  &lt 5 ESCAPE
+&none  &none  &none  &none  &none  &none    &kp O      &kp E  &kp H  &kp T  &kp S  &lt 4 BACKSPACE
+&none  &none  &none  &none  &none  &none    &kp U      &kp A  &kp R  &kp W  &kp C  &kp RIGHT_SHIFT
+                     &none  &none  &none    &kp SPACE  &mo 3  &mo 2
+            >;
+        };
+
+        combo {
+            bindings = <
+&none  &none  &none  &none  &none  &none    &kp MINUS  &kp SQT     &kp M  &kp K  &kp J  &kp RET
+&none  &none  &none  &none  &none  &none    &kp Q      &kp PERIOD  &kp L  &kp P  &kp Y  &kp BACKSPACE
+&none  &none  &none  &none  &none  &none    &kp Z      &kp COMMA   &kp V  &kp B  &kp X  &kp RIGHT_SHIFT
+                     &none  &none  &none    &none      &none       &none
+            >;
+
+            label = "COMBO";
+        };
+
+        number {
+            label = "NUMBER";
+
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
+            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+            //                    | GUI |     | SPC |   | ENT |     | ALT |
+
+            bindings = <
+&none  &none  &none  &none  &none  &none    &kp DOT    &kp NUMBER_9  &kp N8        &kp N7        &kp NUMBER_6  &kp EQUAL
+&none  &none  &none  &none  &none  &none    &kp N5     &kp NUMBER_4  &kp NUMBER_3  &kp NUMBER_2  &kp NUMBER_1  &kp PLUS
+&none  &none  &none  &none  &none  &none    &kp COMMA  &kp N0        &kp PERCENT   &kp DOLLAR    &kp HASH      &kp MINUS
+                     &none  &none  &none    &none      &none         &none
+            >;
+        };
+
+        symbol {
+            label = "SYMBOL";
+
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
+            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
+            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+            //                    | GUI |     | SPC |   | ENT |     | ALT |
+
+            bindings = <
+&none  &none  &none  &none  &none  &none    &kp CARET     &kp AT           &kp LPAR               &kp LBRC       &kp LEFT_BRACKET   &kp TAB
+&none  &none  &none  &none  &none  &none    &kp SLASH     &kp EXCLAMATION  &kp QUESTION           &kp SEMICOLON  &kp COLON          &kp BACKSLASH
+&none  &none  &none  &none  &none  &none    &kp ASTERISK  &kp AMPERSAND    &kp RIGHT_PARENTHESIS  &kp RBRC       &kp RIGHT_BRACKET  &kp TILDE
+                     &none  &none  &none    &none         &none            &none
+            >;
+        };
+
+        navigation {
+            bindings = <
+&none  &none  &none  &none  &none  &none    &kp PAGE_UP    &kp HOME        &kp UP_ARROW  &kp END          &kp BACKSPACE  &kp LG(A)
+&none  &none  &none  &none  &none  &none    &kp PAGE_DOWN  &kp LEFT_ARROW  &kp DOWN      &kp RIGHT_ARROW  &kp LG(D)      &none
+&none  &none  &none  &none  &none  &none    &kp LG(Z)      &kp LG(C)       &kp LG(X)     &kp LG(V)        &kp LG(L)      &kp LG(F)
+                     &none  &none  &none    &kp LGUI       &kp LEFT_ALT    &kp LCTRL
+            >;
+
+            label = "NAV";
+        };
+
+        mouse {
+            bindings = <
+&none  &none  &none  &none  &none  &none    &none  &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT  &none  &none
+&none  &none  &none  &none  &none  &none    &none  &none           &mmv MOVE_DOWN  &none            &none  &none
+&none  &none  &none  &none  &none  &none    &none  &none           &none           &none            &none  &none
+                     &none  &none  &none    &none  &mkp LCLK       &mkp RCLK
+            >;
+
+            label = "MOUSE";
+        };
+
+        bluetooth {
+            bindings = <
+&none  &none  &none  &none  &none  &none    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR
+&none  &none  &none  &none  &none  &none    &none         &none         &none         &none         &none         &none
+&none  &none  &none  &none  &none  &none    &none         &none         &none         &none         &none         &none
+                     &none  &none  &none    &none         &none         &none
+            >;
+
+            label = "BT";
+        };
+    };
 };
